@@ -16,7 +16,8 @@ fun Project.createPluginManifest(): PluginManifest {
     return PluginManifest(
         pluginClassName = extension.pluginClassName!!,
         name = name,
-        version = version.toString(),
+        versionName = extension.versionName.get(),
+        versionCode = extension.versionCode.get(),
         updateUrl = extension.updateUrl.orNull,
         requiresResources = extension.requiresResources.get(),
     )
@@ -28,7 +29,8 @@ fun Project.createPluginData(): PluginData {
     return PluginData(
         buildUrl = extension.buildUrl.orNull?.let { String.format(it, name) },
         status = extension.status.get(),
-        version = version.toString(),
+        versionName = extension.versionName.get(),
+        versionCode = extension.versionCode.get(),
         name = name,
         authors = extension.authors.getOrElse(emptyList()),
         description = extension.description.orNull,

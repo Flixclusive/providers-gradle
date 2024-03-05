@@ -40,6 +40,20 @@ abstract class FlixclusiveExtension @Inject constructor(val project: Project) {
      * */
     var buildBranch = "builds"
 
+    var versionMajor = 0
+    var versionMinor = 0
+    var versionPatch = 0
+    var versionBuild = 0
+
+    /**
+     *
+     * Default version name: "${versionMajor}.${versionMinor}.${versionPatch}"
+     * */
+    val versionName: Property<String> = project.objects.property(String::class.java)
+        .convention("${versionMajor}.${versionMinor}.${versionPatch}")
+    val versionCode: Property<Long> = project.objects.property(Long::class.java)
+        .convention(versionMajor * 10000L + versionMinor * 1000 + versionPatch * 100 + versionBuild)
+
     val repositoryUrl: Property<String> = project.objects.property(String::class.java)
     val updateUrl: Property<String> = project.objects.property(String::class.java)
     val buildUrl: Property<String> = project.objects.property(String::class.java)

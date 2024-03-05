@@ -105,7 +105,7 @@ fun registerTasks(project: Project) {
 
             it.from(manifestFile)
             it.doFirst {
-                require(project.version != "unspecified") {
+                require(extension.versionCode > 0L) {
                     "No version is set"
                 }
 
